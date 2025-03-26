@@ -11,6 +11,7 @@ body {
     color: #333;
 }
 
+
 header {
     background-color: #5e4534;
     color: #000000;
@@ -77,11 +78,55 @@ nav a:hover {
 }
 
 footer {
-    background-color: #5e4534;
+    background-color: #4A3323FF;
     color: #000000;
+    padding: 20px 0;
     text-align: center;
-    padding: 15px;
-    position: fixed;
     width: 100%;
-    bottom: 0;
+    margin-top: auto; /* Footer sa posunie dole */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+}
+
+.footer-left {
+    text-align: left;
+}
+
+.footer-logo {
+    max-width: 200px;
+    margin-bottom: 10px;
+}
+
+.footer-left p, .footer-right p {
+    margin: 5px 0;
+    color: #000000;
+}
+
+.footer-left a, .footer-bottom a {
+    color: #4a3323;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-bottom {
+    background-color: #956b3e;
+    text-align: center;
+    padding: 10px;
+    margin-top: 15px;
+}
+.footer-mid{
+
+}
+
+.footer-right {
+    text-align: right;
+}
+.content {
+    flex: 1; /* Zabezpečí, že obsah zaberie zvyšný priestor */
+    display: flex;
 }
