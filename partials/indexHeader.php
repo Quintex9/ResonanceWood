@@ -1,4 +1,6 @@
-
+<?php
+include("_inc/functions.php");
+?>
 <!DOCTYPE html>
 <html lang="sk">
 <head>
@@ -46,8 +48,12 @@
 </header>
 
 <nav>
-    <a href="#">Domov</a>
-    <a href="#">Naše drevá</a>
-    <a href="#">Nástroje</a>
-    <a href="#">Kontaktujte nás</a>
+    <?php
+    $pages = array("Domov" => "index.php",
+        "Naše drevá" => "naseDreva.php",
+        "Nástroje" => "nastroje.php",
+        "Kontaktuje nás" => "kontakt.php",
+    );
+    echo(get_menu($pages));
+    ?>
 </nav>

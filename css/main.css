@@ -130,3 +130,33 @@ footer {
     flex: 1; /* Zabezpečí, že obsah zaberie zvyšný priestor */
     display: flex;
 }
+.banner {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.banner-text {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 20px;
+    width: 100%;
+    text-align: left;
+}
+
+.banner-text h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.banner-text p {
+    font-size: 16px;
+}
