@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
-<body>
 <header>
     <h1>ResonanceWood</h1>
     <p>Objavte krásu a históriu dreva, ktoré formuje hudbu</p>
