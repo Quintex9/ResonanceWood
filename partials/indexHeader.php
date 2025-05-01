@@ -1,5 +1,5 @@
 <?php
-include("_inc/functions.php");
+require_once('_inc/autoload.php');
 ?>
 <!DOCTYPE html>
 <html lang="sk">
@@ -37,7 +37,8 @@ include("_inc/functions.php");
             width: 100%;
             max-width: 600px;
             height: 400px;
-            margin-top: 20px;
+            margin-top: 30px;
+            margin-bottom: 50px;
         }
     </style>
 </head>
@@ -49,11 +50,10 @@ include("_inc/functions.php");
 
 <nav>
     <?php
-    $pages = array("Domov" => "index.php",
-        "Naše drevá" => "naseDreva.php",
-        "Nástroje" => "nastroje.php",
-        "Kontaktuje nás" => "kontakt.php",
-    );
-    echo(get_menu($pages));
+    $menu = new Menu();
+    $menuItems = $menu->getMenuItems();
+    foreach ($menuItems as $item) {
+        echo '<a href="' . $item['link'] . '">' . $item['label'] . '</a>';
+    }
     ?>
 </nav>

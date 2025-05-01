@@ -9,6 +9,7 @@ body {
     font-family: 'Lora', serif;
     background-color: #f4f4f4;
     color: #333;
+    min-height: 100vh;
 }
 
 
@@ -46,6 +47,7 @@ nav a:hover {
     flex-wrap: wrap;
     justify-content: center;
     padding: 20px;
+    flex: 1;
 }
 
 .card {
@@ -79,11 +81,11 @@ nav a:hover {
 
 footer {
     background-color: #4A3323FF;
-    color: #000000;
-    padding: 20px 0;
+    color: #ffffff;
+    padding: 40px 0;
     text-align: center;
     width: 100%;
-    margin-top: auto; /* Footer sa posunie dole */
+    margin-top: auto;
 }
 
 .footer-container {
@@ -91,6 +93,7 @@ footer {
     justify-content: space-between;
     align-items: center;
     padding: 0 50px;
+    margin-top: 0;
 }
 
 .footer-left {

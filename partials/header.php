@@ -1,4 +1,4 @@
-<?php include("_inc/functions.php") ?>
+<?php require_once("_inc/autoload.php") ?>
 
 <!DOCTYPE html>
 <html lang="sk">
@@ -17,11 +17,10 @@
 
 <nav>
     <?php
-    $pages = array("Domov" => "index.php",
-        "Naše drevá" => "naseDreva.php",
-        "Nástroje" => "nastroje.php",
-        "Kontaktuje nás" => "kontakt.php",
-    );
-    echo(get_menu($pages));
+    $menu = new Menu();
+    $menuItems = $menu->getMenuItems();
+    foreach ($menuItems as $item) {
+        echo '<a href="' . $item['link'] . '">' . $item['label'] . '</a>';
+    }
     ?>
 </nav>
