@@ -14,7 +14,7 @@ INSERT INTO wood_types ( `name`, image, link, description) VALUES
 ('Smrek','Images/smrek.jpg','smrek.php','Náš smrek je presne to, čo potrebujete pre dokonalú rezonanciu! Ľahký, pružný a s nádhernou akustikou – ideálny na výrobu rezonančných dosiek pre kvalitné hudobné nástroje.'),
 ('Jaseň','Images/jaseň.jpg','jasen.php','Hľadáte pevné a odolné drevo s výbornou odozvou? Náš jaseň je skvelou voľbou pre gitarové krky a telá.'),
 ('Jelša','Images/jelsa.jpg','jelsa.php','Jelša je tajnou ingredienciou mnohých ikonických elektrických gitár – a my vám prinášame tú najlepšiu kvalitu!'),
-('Javor','Images/maple.jpg','javor.php','Náš javor je synonymom precíznosti a čistoty zvuku. Vďaka svojej hustote a tvrdosti je ideálny na hmatníky a kobylky.');
+('Javor','Images/javor.png','javor.php','Náš javor je synonymom precíznosti a čistoty zvuku. Vďaka svojej hustote a tvrdosti je ideálny na hmatníky a kobylky.');
 
 
 CREATE TABLE products (
@@ -69,4 +69,15 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`) VA
                                                                                   (5, 'admin', 'admin@example.com', '$2y$10$D70SoY/KX7O0w2w/CJi97.JbqCJ1dwTP6F.w24sMBVFlrxSF8gSCC', 0, '2025-04-28 21:30:33'),
                                                                                   (6, 'user', 'user@example.com', '$2y$10$G2GzEDQtlA.32.FFiNyV1.uMgAxdD7jmm40jdNKFVrSSodTqLp2q2', 1, '2025-04-28 21:30:49');
 
+CREATE TABLE `contact` (
+                           `id` int(11) NOT NULL AUTO_INCREMENT,
+                           `name` varchar(150) NOT NULL,
+                           `email` varchar(150) NOT NULL,
+                           `message` text NOT NULL,
+                           PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+INSERT INTO `contact` (`id`, `name`, `email`, `message`) VALUES
+                                                             (1, 'michal', 'michal.smatana@gmail.com', 'halo'),
+                                                             (2, 'a', 'a.a@gmail.com', 'a');

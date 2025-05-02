@@ -71,7 +71,7 @@ class Authenticate{
 
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $defaultName = "user";
-        $defaultRole = 0;
+        $defaultRole = 1;
 
         $stmt = $this->db->prepare("INSERT INTO users (name,email, password,role) VALUES (:name ,:email, :password, :role)");
         $stmt->bindParam(":name", $defaultName,PDO::PARAM_STR);
