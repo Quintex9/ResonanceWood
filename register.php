@@ -8,9 +8,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $email = $_POST["email"]??"";
     $password = $_POST["password"]??"";
 
-    $result = $auth->login($email, $password);
-    if($result === true){
-        header("location: index.php");
+    $result = $auth->register($email, $password);
+
+    if($result === true){ //== nefungovalo, opýtať sa na hodine :(
+        header("location: login.php");
         exit();
     } else{
         $error = $result;
@@ -83,22 +84,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 </style>
 <section class="container">
-    <h2>Prihlásenie</h2>
-    <?php if(isset($error)):?>
-        <div style="color:red;">
-            <?php echo $error;?>
-        </div>
-    <?php endif;?>
+    <h2>Registrácia</h2>
+    <?php if (isset($error)): ?>
+        <div style="color:red;"><?php echo htmlspecialchars($error); ?></div>
+    <?php endif; ?>
     <form method="POST" >
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required><br>
         <label for="password">Heslo:</label>
         <input type="password" id="password" name="password" required><br>
-        <button type="submit">Prihlásiť sa</button>
+        <button type="submit">Zaregistrovať sa</button>
     </form>
-    <p style="text-align:center; margin-top: 15px;">
-        Nemáte účet? <a href="register.php">Zaregistrujte sa</a>
-    </p>
 </section>
 
 <?php

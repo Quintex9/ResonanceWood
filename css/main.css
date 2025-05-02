@@ -14,10 +14,36 @@ body {
 
 
 header {
-    background-color: #5e4534;
-    color: #000000;
-    padding: 20px;
+    position: relative;
+    background-color: #4a3323;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-center {
     text-align: center;
+    color: black;
+}
+
+.header-right {
+    position: absolute;
+    right: 40px;
+    top: 40px;
+}
+
+.login-button {
+    background-color: #8b5e3c;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.login-button:hover {
+    background-color: #6e442b;
 }
 
 header h1 {

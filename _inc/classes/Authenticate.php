@@ -58,4 +58,31 @@ class Authenticate{
             exit;
         }
     }
+
+    public function register($email, $password) {
+        //kotrola
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->bindParam(":email", $email,PDO::PARAM_STR);
+        $stmt->execute();
+        $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($existingUser){
+            return "Používateľ s týmto E-mailom už existuje";
+        }
+
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $defaultName = "user";
+        $defaultRole = 0;
+
+        $stmt = $this->db->prepare("INSERT INTO users (name,email, password,role) VALUES (:name ,:email, :password, :role)");
+        $stmt->bindParam(":name", $defaultName,PDO::PARAM_STR);
+        $stmt->bindParam(":email", $email,PDO::PARAM_STR);
+        $stmt->bindParam(":password", $hash,PDO::PARAM_STR);
+        $stmt->bindParam(":role", $defaultRole,PDO::PARAM_INT);
+        if($stmt->execute()){
+            return true;
+        } else {
+            return "Registrácia zlyhala.";
+        }
+
+    }
 }

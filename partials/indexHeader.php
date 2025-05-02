@@ -1,5 +1,8 @@
 <?php
 require_once('_inc/autoload.php');
+echo"<pre>";
+print_r($_SESSION);
+echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="sk">
@@ -44,14 +47,23 @@ require_once('_inc/autoload.php');
 </head>
 <body>
 <header>
-    <div class="header-mid">
+    <div class="header-center">
         <h1>ResonanceWood</h1>
         <p>Objavte krásu a históriu dreva, ktoré formuje hudbu</p>
     </div>
     <div class="header-right">
-        <a href="login.php" class="login-button">Prihlásiť sa</a>
+        <?php
+        $db = new Database();
+        $auth = new Authenticate($db);
+        if ($auth->isLoggedIn()) {
+            echo '<a href="logout.php" class="login-button">Odhlásiť sa</a>';
+        }else{
+            echo '<a href="login.php" class="login-button">Prihlásiť sa</a>';
+        }
+        ?>
     </div>
 </header>
+
 
 <nav>
     <?php
