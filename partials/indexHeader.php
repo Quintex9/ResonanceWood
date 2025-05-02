@@ -44,8 +44,13 @@ require_once('_inc/autoload.php');
 </head>
 <body>
 <header>
-    <h1>ResonanceWood</h1>
-    <p>Objavte krásu a históriu dreva, ktoré formuje hudbu</p>
+    <div class="header-mid">
+        <h1>ResonanceWood</h1>
+        <p>Objavte krásu a históriu dreva, ktoré formuje hudbu</p>
+    </div>
+    <div class="header-right">
+        <a href="login.php" class="login-button">Prihlásiť sa</a>
+    </div>
 </header>
 
 <nav>
