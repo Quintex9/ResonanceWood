@@ -8,7 +8,13 @@ include("partials/header.php");
                 <div class="col-100 text-center">
                     <?php
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                        $contact_name = $_POST['meno'];
+                        $db = new Database();
+                        $contact = new Contact($db);
+                        $contact_name = $_POST['name'];
+                        $contact_phone = $_POST['phone'];
+                        $contact_email = $_POST['email'];
+                        $contact_message = $_POST['message'];
+                        $contact->create($contact_name, $contact_phone, $contact_email, $contact_message);
 
                         if (empty($contact_name)) {
                             echo "";

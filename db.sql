@@ -72,12 +72,13 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`) VA
 CREATE TABLE `contact` (
                            `id` int(11) NOT NULL AUTO_INCREMENT,
                            `name` varchar(150) NOT NULL,
+                           `phone` int(100) NOT NULL,
                            `email` varchar(150) NOT NULL,
                            `message` text NOT NULL,
                            PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-INSERT INTO `contact` (`id`, `name`, `email`, `message`) VALUES
-                                                             (1, 'michal', 'michal.smatana@gmail.com', 'halo'),
-                                                             (2, 'a', 'a.a@gmail.com', 'a');
+INSERT INTO `contact` (`id`, `name`,`phone`, `email`, `message`) VALUES
+                                                             (1, 'michal', 0944425090,'michal.smatana@gmail.com', 'halo'),
+                                                             (2, 'a', 0908157986,'a.a@gmail.com', 'a');

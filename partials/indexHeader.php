@@ -1,8 +1,5 @@
 <?php
 require_once('_inc/autoload.php');
-echo"<pre>";
-print_r($_SESSION);
-echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="sk">

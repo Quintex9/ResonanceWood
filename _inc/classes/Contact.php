@@ -14,15 +14,16 @@ class Contact{
     }
     public function destroy($id) {
         $stmt = $this->db->prepare("DELETE FROM contact WHERE id = :id");
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT); //PDO::PARAM_INT - nepovinne
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
 
-    public function create($name, $email, $message){
-        $stmt = $this->db->prepare("INSERT INTO contact (name, email, message) VALUES (:name, :email, :message)");
-        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->bindParam(':message', $message, PDO::PARAM_STR);
+    public function create($name, $phone,$email, $message){
+        $stmt = $this->db->prepare("INSERT INTO contact (name, phone,email, message) VALUES (:name, :phone,:email, :message)");
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':message', $message);
         return $stmt->execute();
 
     }
@@ -33,14 +34,15 @@ class Contact{
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function edit($id, $name, $email, $message) {
-        $stmt = $this->db->prepare("UPDATE contact SET name = :name, email = :email, 
+    public function edit($id, $name, $phone, $email, $message) {
+        $stmt = $this->db->prepare("UPDATE contact SET name = :name, phone = :phone,email = :email, 
             message = :message WHERE id = :id");
 
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->bindParam(':message', $message, PDO::PARAM_STR);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':message', $message);
         return $stmt->execute();
     }
 

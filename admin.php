@@ -1,6 +1,7 @@
 <?php
 include("partials/header.php");
 
+
 $db = new Database();
 $auth = new Authenticate($db);
 $auth->reguireLogin();
@@ -44,6 +45,7 @@ if($userRole == 0) {
         <tr>
             <th>ID</th>
             <th>Meno</th>
+            <th>Telefón</th>
             <th>Email</th>
             <th>Správa</th>
             <th>Delete</th>
@@ -54,6 +56,7 @@ if($userRole == 0) {
             <tr>
                 <td><?= htmlspecialchars($con['id']) ?></td>
                 <td><?= htmlspecialchars($con['name']) ?></td>
+                <td><?= htmlspecialchars($con['phone']) ?></td>
                 <td><?= htmlspecialchars($con['email']) ?></td>
                 <td><?= htmlspecialchars($con['message']) ?></td>
                 <td><a href="?delete=<?= $con['id'] ?>" onclick="return confirm('Určite chcete vymazať túto správu?')">Delete</a></td>

@@ -1,15 +1,17 @@
-<?php include("partials/header.php"); ?>
+<?php
+include("partials/header.php");
+?>
     <main>
         <div class="contact-container">
             <h2>Kontaktujte nás</h2>
             <form id="contact" action="thankyou.php" method="POST">
                 <div class="form-group">
                     <label for="name">Meno:</label>
-                    <input type="text" id="meno" name="meno" required>
+                    <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="phone">Telefónne číslo:</label>
-                    <input type="tel" id="telefon" name="telefon" required>
+                    <input type="tel" id="phone" name="phone" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
@@ -17,7 +19,7 @@
                 </div>
                 <div class="form-group">
                     <label for="message">Správa:</label>
-                    <textarea id="sprava" name="sprava" rows="5" required></textarea>
+                    <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
                 <button type="submit" value="Odoslať" class="submit-button">Odoslať</button>
             </form>
