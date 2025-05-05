@@ -1,10 +1,13 @@
 <?php
 include("partials/header.php");
-
+include("_inc/classes/Inquiry.php");
 
 $db = new Database();
 $auth = new Authenticate($db);
 $auth->reguireLogin();
+$inquiry = new Inquiry($db);
+$inquiries = $inquiry->index(); // Metóda v triede Inquiry, ktorá vráti všetky dopyty
+
 
 $userRole = $auth->getUserRole();
 if($userRole == 0) {
@@ -33,6 +36,55 @@ if($userRole == 0) {
     section{
         padding: 100px;
     }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    th, td {
+        padding: 12px 16px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #8b5e3c;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f4ef;
+    }
+
+    tr:hover {
+        background-color: #f0e3d0;
+        transition: background-color 0.3s ease;
+    }
+
+    table a.button, table a {
+        padding: 6px 12px;
+        margin: 0 4px;
+        background-color: #8b5e3c;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 0.9em;
+        transition: background-color 0.2s ease;
+    }
+
+    /* Tlačítka v tabuľkách po hover */
+    table a.button:hover, table a:hover {
+        background-color: #704929;
+    }
+
 </style>
 
 <section class="container">
@@ -40,7 +92,6 @@ if($userRole == 0) {
 
     <!-- Sekcia kontaktov -->
     <h2>Kontakty</h2>
-    <a href="contact-create.php" class="button">Create Contact</a>
     <table border="1">
         <tr>
             <th>ID</th>
@@ -94,6 +145,34 @@ if($userRole == 0) {
             <?php endforeach; ?>
         </table>
     <?php endif; ?>
+    <h2>Dopyty na produkty</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Meno</th>
+            <th>Priezvisko</th>
+            <th>Email</th>
+            <th>Telefón</th>
+            <th>Otázka</th>
+            <th>Produkt</th>
+            <th>Cena</th>
+            <th>Delete</th>
+        </tr>
+        <?php foreach($inquiries as $inq): ?>
+            <tr>
+                <td><?= htmlspecialchars($inq['id']) ?></td>
+                <td><?= htmlspecialchars($inq['first_name']) ?></td>
+                <td><?= htmlspecialchars($inq['last_name']) ?></td>
+                <td><?= htmlspecialchars($inq['email']) ?></td>
+                <td><?= htmlspecialchars($inq['phone']) ?></td>
+                <td><?= htmlspecialchars($inq['question']) ?></td>
+                <td><?= htmlspecialchars($inq['product_name']) ?></td>
+                <td><?= htmlspecialchars($inq['product_price']) ?> €</td>
+                <td><a href="?delete_inquiry=<?= $inq['id'] ?>" onclick="return confirm('Naozaj zmazať dopyt?')">Delete</a></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
 
 </section>
 

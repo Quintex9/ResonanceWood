@@ -11,4 +11,9 @@ class wood {
         $stmt = $this->db->query("SELECT * FROM wood_types");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getNastroje(){
+        $stmt = $this->db->query("SELECT * FROM nastroje");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

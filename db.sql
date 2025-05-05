@@ -82,3 +82,17 @@ CREATE TABLE `contact` (
 INSERT INTO `contact` (`id`, `name`,`phone`, `email`, `message`) VALUES
                                                              (1, 'michal', 0944425090,'michal.smatana@gmail.com', 'halo'),
                                                              (2, 'a', 0908157986,'a.a@gmail.com', 'a');
+
+CREATE TABLE nastroje (
+                            id INT AUTO_INCREMENT PRIMARY KEY,
+                            name VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+                            image VARCHAR(255) NOT NULL,
+                            price DECIMAL(10,2) NOT NULL,
+                            description TEXT NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci;
+
+INSERT INTO `nastroje` (`id`, `name`,`image`, `price`, `description`) VALUES
+                                                                     (1, 'DETSKÁ HRAČKÁRSKA GITARA ','Images/gitara.jpg',29.99, 'Kvalitná drevenná gitara ponúka bohatý, rezonantný zvuk vďaka precíznemu spracovaniu a výberu masívneho dreva. Je ideálna pre začiatočníkov aj profesionálov, ktorí hľadajú spoľahlivý nástroj s dlhou životnosťou. Elegantný dizajn a pohodlný krk zaručujú výnimočný herný zážitok.'),
+                                                                     (2, 'Hikari jaseňová kalimba', 'Images/kalimba.jpg',750.50, 'Hikari špeciálna jaseňová kalimba je ručne vyrábaný hudobný nástroj s 17 kovovými lamelami a telom z kvalitného jaseňového dreva. Vyznačuje sa čistým, rezonantným zvukom a elegantným prírodným dizajnom. Ideálna pre začiatočníkov aj pokročilých hudobníkov na relaxáciu či hudobnú tvorbu.'),
+                                                                     (3,'Dvojačka píšťala','Images/pistala.jpg',80.00,'Originálny slovenský nástroj, ktorý očarí svojím jedinečným zvukom a tradičným vzhľadom. Vďaka dvom trubiciam môžete hrať melódiu aj sprievod naraz, čo z nej robí výnimočný kúsok pre každého milovníka folklóru. Skvelá voľba pre hudobníkov, zberateľov aj ako darček s dušou tradície.'),
+                                                                     (4,'Dubový stojan na gitaru','Images/stojan.jpg',40,'Skladací drevený stojan na gitaru z dubového dreva je elegantné a praktické riešenie pre bezpečné odkladanie vášho nástroja. Vďaka skladacej konštrukcii je ľahko prenosný a ideálny na použitie doma, v štúdiu aj na koncertoch. Kvalitné dubové drevo dodáva stojanu stabilitu, odolnosť a prirodzený vzhľad.');
