@@ -6,8 +6,6 @@ include("Product.php"); //
 $db = new Database();
 $auth = new Authenticate($db);
 $auth->reguireLogin();
-$inquiry = new Inquiry($db);
-$inquiries = $inquiry->index();
 
 
 $userRole = $auth->getUserRole();
@@ -95,7 +93,6 @@ if($userRole == 0) {
         transition: background-color 0.2s ease;
     }
 
-    /* Tlačítka v tabuľkách po hover */
     table a.button:hover, table a:hover {
         background-color: #704929;
     }
@@ -213,10 +210,7 @@ if($userRole == 0) {
         <?php endforeach; ?>
     </table>
 
-
-
 </section>
-
 
 <?php
 include("partials/footer.php");

@@ -1,5 +1,5 @@
 <?php
-include("partials/header.php"); include("partials/wood.php");
+include("partials/header.php"); include("_inc/classes/wood.php");
 require_once("_inc/classes/Database.php");
 require_once("Product.php");
 
@@ -19,7 +19,7 @@ $productsItems = $products->getNastroje();
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            background-repeat: no-repeat; /* ZABRÁNI OPAKOVANIU */
+            background-repeat: no-repeat;
             color: #333;
         }
     </style>

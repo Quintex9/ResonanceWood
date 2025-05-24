@@ -10,7 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $result = $auth->register($email, $password);
 
-    if($result === true){ //== nefungovalo, opýtať sa na hodine :(
+    if($result === true){
         header("location: login.php");
         exit();
     } else{

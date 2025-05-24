@@ -48,16 +48,20 @@ class Product
     {
         echo '<div class="product-card">';
         echo '<div class="product-image">';
-        echo '<img src="' . $product['image'] . '" alt="' . $product['name'] . '">';
+        echo '<img src="' . htmlspecialchars($product['image']) . '" alt="' . htmlspecialchars($product['name']) . '">';
         echo '</div>';
         echo '<div class="product-info">';
-        echo '<div class="product-category">' . $product['price'] . "€" . '</div>';
-        echo '<h2 class="product-title">' . $product['name'] . '</h2>';
-        echo '<p>' . "Rok výroby: " . $product['rok'] . '</p>';
-        echo '<button class="product-inquiry" onclick="openInquiryForm(' . $product['id'] . ', \'' . addslashes($product['name']) . '\', \'' . $product['price'] . '\')">Spýtať sa na tovar</button>';
+        echo '<div class="product-category">' . htmlspecialchars($product['price']) . "€" . '</div>';
+        echo '<h2 class="product-title">' . htmlspecialchars($product['name']) . '</h2>';
+        echo '<p>' . "Rok výroby: " . htmlspecialchars($product['rok']) . '</p>';
+        echo '<button class="product-inquiry" onclick="openInquiryForm('
+            . htmlspecialchars($product['id']) . ', \''
+            . addslashes(htmlspecialchars($product['name'])) . '\', \''
+            . htmlspecialchars($product['price']) . '\')">Spýtať sa na tovar</button>';
         echo '</div>';
         echo '</div>';
     }
+
     public function renderProductGrid($woodType)
     {
         $products = $this->getProductsByWoodType($woodType);
