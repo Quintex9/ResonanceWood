@@ -18,11 +18,19 @@ class Database {
             die('Connection failed: ' . $e->getMessage());
         }
     }
+
     public function __destruct(){
         $this->pdo = null;
     }
 
     public function getConnection(){
         return $this->pdo;
+    }
+
+    public function query($sql){
+        return $this->pdo->query($sql);
+    }
+    public function prepare($sql){
+        return $this->pdo->prepare($sql);
     }
 }

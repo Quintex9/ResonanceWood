@@ -7,8 +7,36 @@ class Product
     {
         $this->conn = $dbConnection;
     }
+    public function index() {
+        $stmt = $this->conn->query("SELECT * FROM products");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function destroy($id) {
+        $stmt = $this->conn->prepare("DELETE FROM products WHERE id = ?");
+        return $stmt->execute([$id]);
+    }
+    public function getById($id) {
+        $stmt = $this->conn->prepare("SELECT * FROM products WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
-    // Získa produkty podľa typu dreva
+    public function update($id, $data) {
+        $stmt = $this->conn->prepare("UPDATE products SET name = ?, price = ?, image = ?, wood_type_id = ?, rok = ? WHERE id = ?");
+        return $stmt->execute([
+            $data['name'], $data['price'], $data['image'],
+            $data['wood_type_id'], $data['rok'], $id
+        ]);
+    }
+
+    public function create($data) {
+        $stmt = $this->conn->prepare("INSERT INTO products (name, price, image, wood_type_id, rok) VALUES (?, ?, ?, ?, ?)");
+        return $stmt->execute([
+            $data['name'], $data['price'], $data['image'],
+            $data['wood_type_id'], $data['rok']
+        ]);
+    }
+
     public function getProductsByWoodType($woodType)
     {
         $stmt = $this->conn->prepare("SELECT * FROM products WHERE wood_type_id = ?");
@@ -16,7 +44,6 @@ class Product
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Zobrazí produktový card
     public function renderProductCard($product)
     {
         echo '<div class="product-card">';
@@ -26,13 +53,11 @@ class Product
         echo '<div class="product-info">';
         echo '<div class="product-category">' . $product['price'] . "€" . '</div>';
         echo '<h2 class="product-title">' . $product['name'] . '</h2>';
-        echo '<p>' . "Rok výroby: " . $product['rok'] . '</p>'; // Pridaný rok výroby
+        echo '<p>' . "Rok výroby: " . $product['rok'] . '</p>';
         echo '<button class="product-inquiry" onclick="openInquiryForm(' . $product['id'] . ', \'' . addslashes($product['name']) . '\', \'' . $product['price'] . '\')">Spýtať sa na tovar</button>';
         echo '</div>';
         echo '</div>';
     }
-
-    // Zobrazí celú mriežku produktov
     public function renderProductGrid($woodType)
     {
         $products = $this->getProductsByWoodType($woodType);
@@ -43,7 +68,6 @@ class Product
         echo '</div>';
     }
 
-    // Zobrazí HTML pre modálne okno
     public function renderModal()
     {
         echo '
@@ -85,7 +109,6 @@ class Product
         document.getElementById('inquiryModal').style.display = "none";
     }
 
-    // Zatvorenie modálu klikom mimo okna
     window.onclick = function(event) {
         const modal = document.getElementById('inquiryModal');
         if (event.target === modal) {

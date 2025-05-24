@@ -1,18 +1,20 @@
 <?php
 include("partials/header.php");
 include("_inc/classes/Inquiry.php");
+include("Product.php"); //
 
 $db = new Database();
 $auth = new Authenticate($db);
 $auth->reguireLogin();
 $inquiry = new Inquiry($db);
-$inquiries = $inquiry->index(); // Metóda v triede Inquiry, ktorá vráti všetky dopyty
+$inquiries = $inquiry->index();
 
 
 $userRole = $auth->getUserRole();
 if($userRole == 0) {
     $contact = new Contact($db);$contacts = $contact->index();
     $user = new User($db);$users = $user->index();
+    $inquiry = new Inquiry($db);$inquiries = $inquiry->index();
 
     if (isset($_GET['delete'])) {
         $contact->destroy($_GET['delete']);
@@ -24,6 +26,19 @@ if($userRole == 0) {
             header("Location: admin.php");
             exit;
         }
+        if (isset($_GET['delete_inquiry'])) {
+            $inquiry->destroy($_GET['delete_inquiry']);
+            header("Location: admin.php");
+            exit;
+        }
+    $product = new Product($db);
+    $products = $product->index();
+
+    if (isset($_GET['delete_product'])) {
+        $product->destroy($_GET['delete_product']);
+        header("Location: admin.php");
+        exit;
+    }
 } else{
     header("Location: index.php");
     exit();
@@ -119,7 +134,6 @@ if($userRole == 0) {
 
     <hr>
     <?php if ($userRole == 0): ?>
-        <!-- Sekcia používateľov -->
         <h2>Používatelia</h2>
         <a href="user-create.php" class="button">Create User</a>
         <table border="1">
@@ -172,6 +186,33 @@ if($userRole == 0) {
             </tr>
         <?php endforeach; ?>
     </table>
+    <h2>Produkty</h2>
+    <a href="product-create.php" class="button">Pridať produkt</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Názov</th>
+            <th>Cena</th>
+            <th>Obrázok</th>
+            <th>Katégoria dreva</th>
+            <th>Rok</th>
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+        <?php foreach($products as $p): ?>
+            <tr>
+                <td><?= htmlspecialchars($p['id']) ?></td>
+                <td><?= htmlspecialchars($p['name']) ?></td>
+                <td><?= htmlspecialchars($p['price']) ?> €</td>
+                <td><img src="<?= htmlspecialchars($p['image']) ?>" width="50"></td>
+                <td><?= htmlspecialchars($p['wood_type_id']) ?></td>
+                <td><?= htmlspecialchars($p['rok']) ?></td>
+                <td><a href="?delete_product=<?= $p['id'] ?>" onclick="return confirm('Zmazať produkt?')">Delete</a></td>
+                <td><a href="product-edit.php?id=<?= $p['id'] ?>">Edit</a></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+
 
 
 </section>

@@ -1,4 +1,4 @@
-<?php include("partials/header.php"); include("partials/wood.php")?>
+<?php include("partials/header.php"); include("_inc/classes/wood.php")?>
 <style>
     body {
         font-family: 'Lora', serif;
